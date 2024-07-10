@@ -1,0 +1,417 @@
+/* General Styles */
+.main-content {
+  padding: 20px;
+  flex-grow: 1; /* Make sure this grows to push the footer down */
+}
+
+.marketing-message {
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 50px;
+  color: #167d8f;
+}
+
+.text {
+  font-size: 35px;
+  color: #167d8f;
+}
+
+.image-container {
+  text-align: right;
+}
+
+.uploaded-image {
+  max-width: 70%;
+  height: auto;
+  width: auto; /* Allow the image to maintain its aspect ratio */
+  max-height: 70vh; /* Prevent the image from becoming too tall */
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 40px;
+  }
+  
+  .text {
+    font-size: 30px;
+  }
+  
+  .uploaded-image {
+    max-width: 90%; /* Allow more space for smaller screens */
+    min-width: 150px; /* Prevent the image from shrinking too much */
+    min-height: 150px; /* Prevent the image from shrinking too much */
+  }
+}
+
+@media (max-width: 576px) {
+  .title {
+    font-size: 30px;
+  }
+  
+  .text {
+    font-size: 25px;
+  }
+  
+  .uploaded-image {
+    max-width: 80%; /* Further adjust for smaller screens */
+    min-width: 100px; /* Prevent the image from shrinking too much */
+    min-height: 100px; /* Prevent the image from shrinking too much */
+  }
+}
+
+
+/* Categories Styles */
+.categories-container {
+  margin-top: 60px;
+  text-align: center; /* Center the content */
+}
+
+.categories-container h2 {
+  margin-bottom: 40px; /* Space between the title and the categories */
+}
+
+.category-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the columns */
+}
+
+.category-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #bea028;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  text-align: center; /* Align the text to the center */
+  transition: background-color 0.3s, box-shadow 0.3s;
+  margin: 20px; /* Add space between buttons */
+  max-width: 300px; /* Maximum size of the buttons */
+}
+
+.category-button:hover {
+  background-color: #ceae2f;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  transform: translateY(-5px); /* Slight lift effect */
+}
+
+.category-icon {
+  font-size: 3rem; /* Icon size */
+  margin-bottom: 10px; /* Space between the icon and the text */
+  color: #282a2c;
+}
+
+.category-info h3 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: #106372;
+}
+
+.category-info p {
+  font-size: 1rem;
+  color: #106372
+}
+
+/* Category Title */
+.categories-title {
+  font-size: 50px;
+  font-weight: 500;
+  color: #167d8f;
+  margin-bottom: 100px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .category-info h3 {
+    font-size: 1rem;
+  }
+
+  .category-info p {
+    font-size: 0.875rem;
+  }
+
+  .category-button {
+    padding: 15px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .category-info h3 {
+    font-size: 0.875rem;
+  }
+
+  .category-info p {
+    font-size: 0.75rem;
+  }
+
+  .category-button {
+    padding: 10px;
+  }
+}
+
+/* Navbar Styles */
+.navbar {
+  background-color: #333;
+  padding: 10px 20px;
+  font-family: Arial, sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Dropdown Styles */
+.nav-item {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  top: calc(100% + 10px);
+  left: 0;
+  min-width: 220px; /* Adjusted width for better fit */
+  z-index: 1000;
+  border-radius: 5px;
+}
+
+.nav-item:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  cursor: pointer;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0; /* Light gray background on hover */
+}
+
+.member-title,
+.product-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.member-description,
+.product-description {
+  font-size: 1rem;
+  color: #666; /* Slightly darker gray for description */
+}
+
+.dropdown-toggle {
+  background-color: transparent;
+  border: none;
+  color: #333;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.dropdown-toggle:hover,
+.dropdown-toggle:focus {
+  color: #1d899a; /* Highlight color on hover/focus */
+  text-decoration: none;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+/* card */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(8, 8, 8, 0.1);
+  transition: transform 0.2s ease-in-out;
+  width: 800%; /* Asegura que la tarjeta ocupe todo el ancho de su contenedor */
+  max-width: 300px; /* Limita el ancho máximo de la tarjeta */
+  margin: auto; /* Centra la tarjeta horizontalmente */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  text-align: center;
+
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+}
+
+.card-img-container {
+  width: 150px; /* Tamaño del contenedor circular */
+  height: 150px; /* Tamaño del contenedor circular */
+  border-radius: 50%; /* Para hacer el contenedor circular */
+  overflow: hidden; /* Asegura que la imagen redondeada se muestre correctamente */
+  /* display: flex; Utiliza flexbox para centrar la imagen */
+  /* justify-content: center; Centra horizontalmente */
+  /* align-items: center; Centra verticalmente */
+  margin: auto;
+  margin-top: 10px;
+}
+
+.card-img-top {
+  width: 100%; /* Ajusta el ancho al 100% del contenedor */
+  height: 100%; /* Ajusta la altura al 100% del contenedor */
+  object-fit: cover; /* Cubre el área del contenedor manteniendo la proporción */
+  display: block; /* Asegura que la imagen se comporte como bloque */
+  border-radius: 50%; /* Para redondear la imagen */
+}
+
+.card-footer {
+  padding: 10px;
+  text-align: center;
+}
+
+
+/* Programmer Profile */
+body {
+  background-color: #f9f9fa;
+}
+
+.padding {
+  padding: 3rem !important;
+}
+
+.user-card-full {
+  border-radius: 10px;
+  box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+  margin-bottom: 30px;
+}
+
+.bg-c-lite-green {
+  background: linear-gradient(to right, #1d899a, #55d1e4);
+}
+
+.user-profile {
+  padding: 20px;
+  text-align: center;
+}
+
+.user-profile img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.card-block {
+  padding: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 0.5rem;
+}
+
+.text-muted {
+  color: #919aa3;
+}
+/* Login and select user type*/
+.custom-button {
+  background-color: #1d899a; 
+  border-color: #1d899a; 
+  color: white; 
+}
+
+.custom-link {
+  color: #1d899a; 
+
+}
+
+.custom-link:hover {
+  color: #125666; 
+  text-decoration: underline; 
+}
+
+
+.custom-button-programmer {
+  background-color: #1d899a; 
+  border-color: #1d899a;
+  color: white;
+}
+
+.custom-button-client {
+  background-color: #1d899a; 
+  border-color: #1d899a;
+  color: white;
+}
+
+.custom-button-programmer:hover,
+.custom-button-client:hover {
+  opacity: 0.8;
+}
+
+/* Footer */
+.text-center {
+  text-align: center;
+}
+
+.text-white {
+  color: white;
+}
+
+.bg-body-tertiary {
+  background-color: #f1f1f1;
+}
+
+.p-3 {
+  padding: 1rem;
+}
+
+.pt-4 {
+  padding-top: 1.5rem;
+}
+
+.m-1 {
+  margin: 0.25rem;
+}
+
+.text-dark {
+  color: #000;
+}
+
+/* Sticky Footer */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #1D899A;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+@media (min-height: 100vh) { /* Apply sticky footer only if the viewport height is at least 100vh */
+  .main-content {
+    margin-bottom: calc(100px + 10px); /* 100px for footer height + 10px for additional padding */
+  }
+}
