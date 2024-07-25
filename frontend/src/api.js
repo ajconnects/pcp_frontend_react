@@ -13,7 +13,7 @@ export const registerProgrammer = (data) => api.post('/auth/register-programmer/
 export const getSearchResults = (query) => api.get(`/search?query=${query}`);
 
 // Categories
-export const getCategoryProgrammers = (id) => api.get(`/category/${id}`);
+export const getCategoryProgrammers = (id) => api.get(`/categories/${id}`);
 export const getCategories = () => api.get('/categories/');
 export const deleteProgrammerProfile = (id) => api.delete(`/programmers/${id}`);
 export const updateProgrammerProfile = (id, data) => api.put(`/programmers/${id}`, data);
