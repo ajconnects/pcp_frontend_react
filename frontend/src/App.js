@@ -20,7 +20,7 @@ import ProgrammerProfile from './components/ProgrammerProfile';
 import Login from './components/Login';
 import { AuthProvider } from './components/AuthContext';
 import UserTypeSelection from './components/UserTypeSelection';
-import Footer from './components/footer'; // Import the footer
+import Footer from './components/Footer'; // Import the footer
 
 function App() {
   const [visible, setVisible] = useState(false);

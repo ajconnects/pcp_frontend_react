@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { CSpinner, CAlert, CButton } from '@coreui/react';
 import './ProgrammerProfile.css';
 import EditProgrammerProfile from './EditProgrammerProfile';
 import FeatureButton from './FeatureButton';
-import { getProgrammerProfile } from '../api';
+import { getProgrammerProfile, getCategories, deleteProgrammerProfile, updateProgrammerProfile } from '../api';
 
 const ProgrammerProfile = () => {
   const { id } = useParams();
@@ -56,7 +55,7 @@ const ProgrammerProfile = () => {
 
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/categories/');
+        const response = await getCategories();
         setCategories(response.data);
       } catch (error) {
         console.error('Error fetching categories:', error);
@@ -71,7 +70,7 @@ const ProgrammerProfile = () => {
     const confirmDelete = window.confirm('Are you sure you want to delete your profile?');
     if (confirmDelete) {
       try {
-        await axios.delete(`http://127.0.0.1:8000/programmers/${id}/`);
+        await deleteProgrammerProfile(id);
         navigate('/');
       } catch (error) {
         setError(error);
@@ -110,13 +109,9 @@ const ProgrammerProfile = () => {
     }
 
     try {
-      await axios.put(`http://127.0.0.1:8000/programmers/${id}/`, form, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      await updateProgrammerProfile(id, form);
       setEditing(false);
-      const response = await getProgrammerProfile(id); // Use the getProgrammerProfile function from api.js to refresh data
+      const response = await getProgrammerProfile(id);
       setProgrammerData(response.data);
     } catch (error) {
       setError(error);

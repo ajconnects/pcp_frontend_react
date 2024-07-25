@@ -14,6 +14,7 @@ export const getSearchResults = (query) => api.get(`/search?query=${query}`);
 
 // Categories
 export const getCategoryProgrammers = (id) => api.get(`/category/${id}`);
+export const getCategories = () => api.get('/categories/');
 
 // Profiles
 export const getProgrammerProfile = (id) => api.get(`/programmer-profile/${id}`);

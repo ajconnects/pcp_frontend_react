@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { CFormInput, CForm, CCol, CButton, CFormCheck, CFormSelect, CFormTextarea, CFormFeedback } from '@coreui/react';
 import { AuthContext } from './AuthContext';
 import { registerProgrammer } from '../api';
+import { getCategoryProgrammers } from '../api';
 
 const ProgrammerForm = () => {
     const navigate = useNavigate();
@@ -30,7 +30,7 @@ const ProgrammerForm = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/categories/');
+                const response = await getCategoryProgrammers();
                 setCategories(response.data);
                 setIsLoading(false);
             } catch (error) {

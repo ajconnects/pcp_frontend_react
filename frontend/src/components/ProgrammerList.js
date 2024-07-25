@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import ProgrammerCard from './ProgrammerCard';
+import { getCategoryProgrammers } from '../api'; // Use the correct API call
+
 
 const ProgrammerList = () => {
   const [programmers, setProgrammers] = useState([]);
@@ -12,7 +13,7 @@ const ProgrammerList = () => {
   useEffect(() => {
     const fetchProgrammers = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/programmers/');
+        const response = await getCategoryProgrammers(); // Ensure this API call is correct
         setProgrammers(response.data);
         setLoading(false);
       } catch (error) {
