@@ -1,35 +1,30 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { CForm, CFormInput, CButton, CContainer, CRow, CCol } from '@coreui/react';
 import { AuthContext } from './AuthContext';
-import { login as loginAPI } from '../api'; // Import the login function from api.js
-
+import { login } from '../api'; // Use the login function from api.js
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
+  const { login: authLogin } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await loginAPI({ email, password }); // Use the login function from api.js
-
-      localStorage.setItem('access_token', response.data.jwt);
+      const response = await login({ email, password });
+      localStorage.setItem('access_token', response.data.token);
       localStorage.setItem('user_type', response.data.user_type);
       localStorage.setItem('user_id', response.data.user_id);
 
-      const userType = response.data.user_type;
-      const userId = response.data.user_id;
+      authLogin(response.data.user_type, response.data.user_id);
 
-      login(userType, userId);
-
-      if (userType === 'programmer') {
-        navigate(`/programmer-profile/${userId}`);
-      } else if (userType === 'client') {
-        navigate(`/client-profile/${userId}`);
+      if (response.data.user_type === 'programmer') {
+        navigate(`/programmer-profile/${response.data.user_id}`);
+      } else if (response.data.user_type === 'client') {
+        navigate(`/client-profile/${response.data.user_id}`);
       }
     } catch (err) {
       setError('Invalid email or password');
@@ -59,9 +54,6 @@ const Login = () => {
             />
             <CButton type="submit" className="custom-button">Login</CButton>
           </CForm>
-          <p className="mt-3">
-            Don't have an account? <Link to="/select-user-type" className="custom-link">Register here</Link>
-          </p>
         </CCol>
       </CRow>
     </CContainer>
