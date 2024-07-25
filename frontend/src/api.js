@@ -13,15 +13,14 @@ export const registerProgrammer = (data) => api.post('/auth/register-programmer/
 export const getSearchResults = (query) => api.get(`/search?query=${query}`);
 
 // Categories
-export const getCategoryProgrammers = (id) => api.get(`/categories/${id}`);
+export const getCategoryProgrammers = (id) => api.get(`/programmers/?category=${id}`);
 export const getCategories = () => api.get('/categories/');
 export const deleteProgrammerProfile = (id) => api.delete(`/programmers/${id}`);
 export const updateProgrammerProfile = (id, data) => api.put(`/programmers/${id}`, data);
 
-
 // Profiles
-export const getProgrammerProfile = (id) => api.get(`/programmer-profile/${id}`);
-export const getClientProfile = (id) => api.get(`/client-profile/${id}`);
+export const getProgrammerProfile = (id) => api.get(`/programmers/${id}`);
+export const getClientProfile = (id) => api.get(`/clients/${id}`);
 
 // Messages
 export const getMessages = (id) => api.get(`/messages/${id}`);
