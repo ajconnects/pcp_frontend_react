@@ -31,7 +31,7 @@ const ProgrammerProfile = () => {
   useEffect(() => {
     const fetchProgrammerData = async () => {
       try {
-        const response = await getProgrammerProfile(id); // Use the getProgrammerProfile function from api.js
+        const response = await getProgrammerProfile(id);
         setProgrammerData(response.data);
         setFormData({
           name: response.data.user.name,
