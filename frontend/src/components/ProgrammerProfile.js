@@ -5,6 +5,7 @@ import { CSpinner, CAlert, CButton } from '@coreui/react';
 import './ProgrammerProfile.css';
 import EditProgrammerProfile from './EditProgrammerProfile';
 import FeatureButton from './FeatureButton';
+import { getProgrammerProfile } from '../api';
 
 const ProgrammerProfile = () => {
   const { id } = useParams();
@@ -31,7 +32,7 @@ const ProgrammerProfile = () => {
   useEffect(() => {
     const fetchProgrammerData = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/programmers/${id}/`);
+        const response = await getProgrammerProfile(id); // Use the getProgrammerProfile function from api.js
         setProgrammerData(response.data);
         setFormData({
           name: response.data.user.name,
@@ -115,7 +116,7 @@ const ProgrammerProfile = () => {
         },
       });
       setEditing(false);
-      const response = await axios.get(`http://127.0.0.1:8000/programmers/${id}/`);
+      const response = await getProgrammerProfile(id); // Use the getProgrammerProfile function from api.js to refresh data
       setProgrammerData(response.data);
     } catch (error) {
       setError(error);

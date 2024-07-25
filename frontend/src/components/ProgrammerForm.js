@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { CFormInput, CForm, CCol, CButton, CFormCheck, CFormSelect, CFormTextarea, CFormFeedback } from '@coreui/react';
 import { AuthContext } from './AuthContext';
+import { registerProgrammer } from '../api';
 
 const ProgrammerForm = () => {
     const navigate = useNavigate();
@@ -84,11 +85,7 @@ const ProgrammerForm = () => {
         }
 
         try {
-            const response = await axios.post('http://127.0.0.1:8000/programmers/', form, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
+            const response = await registerProgrammer(form); // Use the registerProgrammer function from api.js
 
             const programmerId = response.data.id; // Assuming the response contains the new programmer's ID
 

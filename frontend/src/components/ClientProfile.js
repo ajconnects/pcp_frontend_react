@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { getClientProfile } from '../api'; // Import the getClientProfile function from api.js
+
 
 const ClientProfile = () => {
     const { id } = useParams(); // Retrieve client ID from URL params
@@ -11,11 +12,7 @@ const ClientProfile = () => {
     useEffect(() => {
         const fetchClientData = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/clients/${id}/`, {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-                    }
-                });
+                const response = await getClientProfile(id); // Use the getClientProfile function from api.js
                 setClientData(response.data);
                 setLoading(false);
             } catch (error) {

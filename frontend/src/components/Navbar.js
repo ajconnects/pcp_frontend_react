@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
   CNavbar,
   CContainer,
@@ -15,39 +15,23 @@ import {
 } from '@coreui/react';
 import Search from './search';
 import '../App.css';
-import { Link } from 'react-router-dom';
 import { AuthContext } from './AuthContext';
 
 const menuItems = [
   {
     title: "Our Team",
     submenu: [
-      {
-        title: "Sami",
-        description: "El Jefe, Backend and Frontend"
-      },
-      {
-        title: "Aj",
-        description: "Master in API"
-      },
-      {
-        title: "Paula",
-        description: "Only frontend"
-      }
+      { title: "Sami", description: "El Jefe, Backend and Frontend" },
+      { title: "Aj", description: "Master in API" },
+      { title: "Paula", description: "Only frontend" }
     ]
   },
   {
     title: "Our Product",
     submenu: [
-      {
-        title: "Find Work"
-      },
-      {
-        title: "Why P.C.P"
-      },
-      {
-        title: "News"
-      }
+      { title: "Find Work" },
+      { title: "Why P.C.P" },
+      { title: "News" }
     ]
   }
 ];
@@ -93,7 +77,7 @@ const Navbar = ({ visible, setVisible }) => {
               onMouseEnter={() => setTeamDropdownOpen(true)}
               onMouseLeave={() => setTeamDropdownOpen(false)}
             >
-              <CDropdownToggle nav caret className="dropdown-toggle">
+              <CDropdownToggle nav="true" caret className="dropdown-toggle"> {/* Updated here */}
                 Our Team
               </CDropdownToggle>
               <CDropdownMenu className="team-dropdown-menu">
@@ -122,7 +106,7 @@ const Navbar = ({ visible, setVisible }) => {
               onMouseEnter={() => setProductDropdownOpen(true)}
               onMouseLeave={() => setProductDropdownOpen(false)}
             >
-              <CDropdownToggle nav caret className="dropdown-toggle">
+              <CDropdownToggle nav="true" caret className="dropdown-toggle"> {/* Updated here */}
                 Our Product
               </CDropdownToggle>
               <CDropdownMenu className="product-dropdown-menu">

@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
-import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { CForm, CFormInput, CButton, CContainer, CRow, CCol } from '@coreui/react';
 import { AuthContext } from './AuthContext';
+import { login as loginAPI } from '../api'; // Import the login function from api.js
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -14,11 +15,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:8000/login/', { email, password }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await loginAPI({ email, password }); // Use the login function from api.js
 
       localStorage.setItem('access_token', response.data.jwt);
       localStorage.setItem('user_type', response.data.user_type);

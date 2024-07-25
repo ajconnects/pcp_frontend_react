@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { CFormInput, CForm, CCol, CButton, CFormCheck, CFormFeedback, CFormTextarea } from '@coreui/react';
 import { AuthContext } from './AuthContext';
+import { registerClient } from '../api'; // Import the registerClient function from api.js
+
 
 const ClientForm = () => {
     const [formData, setFormData] = useState({
@@ -52,11 +53,7 @@ const ClientForm = () => {
         }
 
         try {
-            const response = await axios.post('http://127.0.0.1:8000/clients/', form, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
+            const response = await registerClient(form); // Use the registerClient function from api.js
 
             const clientId = response.data.id; // Assuming the response contains the new client's ID
 

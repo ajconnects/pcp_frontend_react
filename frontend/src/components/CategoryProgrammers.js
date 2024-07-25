@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { MDBContainer, MDBRow } from 'mdb-react-ui-kit';
-import axios from 'axios';
 import ProgrammerCard from './ProgrammerCard';
+import { getCategoryProgrammers } from '../api'; // Ensure this API call is correct
+
 
 function CategoryProgrammers() {
   const { id } = useParams();
@@ -14,7 +15,7 @@ function CategoryProgrammers() {
   useEffect(() => {
     const fetchProgrammers = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/programmers/?category=${id}`);
+        const response = await getCategoryProgrammers(id); // Use the API call from api.js
         setProgrammers(response.data);
       } catch (error) {
         setError('Error fetching programmers');
