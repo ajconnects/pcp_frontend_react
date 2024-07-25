@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProgrammerCard from './ProgrammerCard';
-import { getCategoryProgrammers } from '../api'; // Use the correct API call
+import { getProgrammers } from '../api'; // Use the correct API call
 
 
 const ProgrammerList = () => {
@@ -13,7 +13,7 @@ const ProgrammerList = () => {
   useEffect(() => {
     const fetchProgrammers = async () => {
       try {
-        const response = await getCategoryProgrammers(); // Ensure this API call is correct
+        const response = await getProgrammers(); // Ensure this API call is correct
         setProgrammers(response.data);
         setLoading(false);
       } catch (error) {

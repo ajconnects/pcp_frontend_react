@@ -21,6 +21,7 @@ export const updateProgrammerProfile = (id, data) => api.put(`/programmers/${id}
 // Profiles
 export const getProgrammerProfile = (id) => api.get(`/programmers/${id}`);
 export const getClientProfile = (id) => api.get(`/clients/${id}`);
+export const getProgrammers = () => api.get('/programmers/');
 
 // Messages
 export const getMessages = (id) => api.get(`/messages/${id}`);
