@@ -1,7 +1,30 @@
-import axios from "axios"
+import axios from "axios";
 
-const API = axios.create({
-    baseURL: process.env.REACT_APP_API_BASE_URL || 'http://127.0.0.1:8000/api',
+const api = axios.create({
+  baseURL: 'https://pcpconsultants.pythonanywhere.com',
 });
 
-export default API;
+// Authentication
+export const login = (data) => api.post('/auth/login/', data);
+export const registerClient = (data) => api.post('/auth/register-client/', data);
+export const registerProgrammer = (data) => api.post('/auth/register-programmer/', data);
+
+// Search
+export const getSearchResults = (query) => api.get(`/search?query=${query}`);
+
+// Categories
+export const getCategoryProgrammers = (id) => api.get(`/categories/${id}`);
+export const getCategories = () => api.get('/categories/');
+export const deleteProgrammerProfile = (id) => api.delete(`/programmers/${id}`);
+export const updateProgrammerProfile = (id, data) => api.put(`/programmers/${id}`, data);
+
+
+// Profiles
+export const getProgrammerProfile = (id) => api.get(`/programmer-profile/${id}`);
+export const getClientProfile = (id) => api.get(`/client-profile/${id}`);
+
+// Messages
+export const getMessages = (id) => api.get(`/messages/${id}`);
+export const sendMessage = (data) => api.post('/messages/', data);
+
+export default api;
