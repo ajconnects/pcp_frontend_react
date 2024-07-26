@@ -48,16 +48,25 @@ function Categories() {
     const fetchCategories = async () => {
       try {
         const response = await getCategories();
+        console.log('Fetched categories:', response.data); // Log the fetched categories
+
         const fetchedCategories = response.data.map(category => {
+          console.log('Processing category:', category.name); // Log each category name
           const staticCategory = staticCategories.find(staticCat => staticCat.name === category.name);
+          if (!staticCategory) {
+            console.warn(`No matching static category found for: ${category.name}`);
+          }
           return {
             ...category,
             buttonText: staticCategory ? staticCategory.buttonText : 'No technologies listed',
             icon: staticCategory ? staticCategory.icon : <FaCode />
           };
         });
+
+        console.log('Merged categories:', fetchedCategories); // Inspect merged data
         setCategories(fetchedCategories);
       } catch (error) {
+        console.error('Error fetching or processing categories:', error);
         setError('Error fetching categories');
       } finally {
         setLoading(false);
