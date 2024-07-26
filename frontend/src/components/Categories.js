@@ -74,7 +74,7 @@ function Categories() {
     };
 
     fetchCategories();
-  }, []);
+  }, [staticCategories]); // Added staticCategories to the dependency array
 
   const handleCategoryClick = (category) => {
     navigate(`/categories/${category.id}`);
