@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { MDBContainer, MDBRow } from 'mdb-react-ui-kit';
 import ProgrammerCard from './ProgrammerCard';
-import { getCategoryProgrammers } from '../api'; // Ensure this API call is correct
+import { getCategoryProgrammers } from '../api';
 
 function CategoryProgrammers() {
   const { id } = useParams();
@@ -14,8 +14,13 @@ function CategoryProgrammers() {
   useEffect(() => {
     const fetchProgrammers = async () => {
       try {
-        const response = await getCategoryProgrammers(id); // Use the updated API call
-        setProgrammers(response.data);
+        const response = await getCategoryProgrammers(id);
+        console.log('API response:', response.data); // Log the response data
+        if (Array.isArray(response.data)) {
+          setProgrammers(response.data);
+        } else {
+          setError('Invalid data format');
+        }
       } catch (error) {
         setError('Error fetching programmers');
       } finally {
