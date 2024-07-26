@@ -11,13 +11,62 @@ function Categories() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const staticCategories = [
+    {
+      name: "Frontend Developer",
+      buttonText: ["JavaScript", "HTML/CSS", "React"],
+      icon: <FaCode />
+    },
+    {
+      name: "Backend Developer",
+      buttonText: ["Python", "Java", "C#"],
+      icon: <FaLaptopCode />
+    },
+    {
+      name: "DevOps",
+      buttonText: ["Docker", "Git", "Kubernetes"],
+      icon: <FaDocker />
+    },
+    {
+      name: "DS/ML",
+      buttonText: ["PyTorch", "TensorFlow", "Pandas"],
+      icon: <FaRobot />
+    },
+    {
+      name: "Cloud Services",
+      buttonText: ["AWS", "Google Cloud", "IBM Cloud"],
+      icon: <FaCloud />
+    },
+    {
+      name: "System Admin",
+      buttonText: ["Linux/Unix", "PowerShell", "Ansible"],
+      icon: <FaUserCog />
+    },
+  ];
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const response = await getCategories();
         console.log('Fetched categories:', response.data); // Inspect the data structure
-        setCategories(response.data);
+
+        if (!Array.isArray(response.data)) {
+          throw new Error('Invalid data format');
+        }
+
+        const fetchedCategories = response.data.map(category => {
+          const staticCategory = staticCategories.find(staticCat => staticCat.name === category.name);
+          return {
+            ...category,
+            buttonText: staticCategory ? staticCategory.buttonText.join(", ") : 'No technologies listed',
+            icon: staticCategory ? staticCategory.icon : <FaCode />
+          };
+        });
+
+        console.log('Merged categories:', fetchedCategories); // Inspect merged data
+        setCategories(fetchedCategories);
       } catch (error) {
+        console.error('Error fetching or processing categories:', error);
         setError('Error fetching categories');
       } finally {
         setLoading(false);
@@ -41,10 +90,10 @@ function Categories() {
         {categories.map(category => (
           <MDBCol key={category.id} xs="12" sm="6" md="4" className="mb-4">
             <div className="category-button" onClick={() => handleCategoryClick(category)}>
-              <div className="category-icon">{getCategoryIcon(category.name)}</div>
+              <div className="category-icon">{category.icon}</div>
               <div className="category-info">
                 <h3>{category.name}</h3>
-                <p>{category.buttonText ? category.buttonText.join(", ") : 'No technologies listed'}</p>
+                <p>{category.buttonText}</p>
               </div>
             </div>
           </MDBCol>
@@ -53,25 +102,5 @@ function Categories() {
     </MDBContainer>
   );
 }
-
-// Function to return the correct icon for each category
-const getCategoryIcon = (name) => {
-  switch (name) {
-    case "Frontend Developer":
-      return <FaCode />;
-    case "Backend Developer":
-      return <FaLaptopCode />;
-    case "DevOps":
-      return <FaDocker />;
-    case "DS/ML":
-      return <FaRobot />;
-    case "Cloud Services":
-      return <FaCloud />;
-    case "System Admin":
-      return <FaUserCog />;
-    default:
-      return <FaCode />;
-  }
-};
 
 export default Categories;
