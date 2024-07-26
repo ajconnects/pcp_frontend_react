@@ -11,49 +11,43 @@ function Categories() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const staticCategories = [
-    {
-      name: "Frontend Developer",
-      buttonText: "JavaScript, HTML/CSS, React",
-      icon: <FaCode />
-    },
-    {
-      name: "Backend Developer",
-      buttonText: "Python, Java, C#",
-      icon: <FaLaptopCode />
-    },
-    {
-      name: "DevOps",
-      buttonText: "Docker, Git, Kubernetes",
-      icon: <FaDocker />
-    },
-    {
-      name: "DS/ML",
-      buttonText: "PyTorch, TensorFlow, Pandas",
-      icon: <FaRobot />
-    },
-    {
-      name: "Cloud Services",
-      buttonText: "AWS, Google Cloud, IBM Cloud",
-      icon: <FaCloud />
-    },
-    {
-      name: "System Admin",
-      buttonText: "Linux/Unix, PowerShell, Ansible",
-      icon: <FaUserCog />
-    },
-  ];
-
   useEffect(() => {
+    const staticCategories = [
+      {
+        name: "Frontend Developer",
+        buttonText: "JavaScript, HTML/CSS, React",
+        icon: <FaCode />
+      },
+      {
+        name: "Backend Developer",
+        buttonText: "Python, Java, C#",
+        icon: <FaLaptopCode />
+      },
+      {
+        name: "DevOps",
+        buttonText: "Docker, Git, Kubernetes",
+        icon: <FaDocker />
+      },
+      {
+        name: "DS/ML",
+        buttonText: "PyTorch, TensorFlow, Pandas",
+        icon: <FaRobot />
+      },
+      {
+        name: "Cloud Services",
+        buttonText: "AWS, Google Cloud, IBM Cloud",
+        icon: <FaCloud />
+      },
+      {
+        name: "System Admin",
+        buttonText: "Linux/Unix, PowerShell, Ansible",
+        icon: <FaUserCog />
+      },
+    ];
+
     const fetchCategories = async () => {
       try {
         const response = await getCategories();
-        console.log('Fetched categories:', response.data); // Inspect the data structure
-
-        if (!Array.isArray(response.data)) {
-          throw new Error('Invalid data format');
-        }
-
         const fetchedCategories = response.data.map(category => {
           const staticCategory = staticCategories.find(staticCat => staticCat.name === category.name);
           return {
@@ -62,11 +56,8 @@ function Categories() {
             icon: staticCategory ? staticCategory.icon : <FaCode />
           };
         });
-
-        console.log('Merged categories:', fetchedCategories); // Inspect merged data
         setCategories(fetchedCategories);
       } catch (error) {
-        console.error('Error fetching or processing categories:', error);
         setError('Error fetching categories');
       } finally {
         setLoading(false);
@@ -74,7 +65,7 @@ function Categories() {
     };
 
     fetchCategories();
-  }, [staticCategories]); // Added staticCategories to the dependency array
+  }, []); // Dependency array is empty
 
   const handleCategoryClick = (category) => {
     navigate(`/categories/${category.id}`);
