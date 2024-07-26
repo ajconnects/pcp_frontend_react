@@ -4,7 +4,6 @@ import { MDBContainer, MDBRow } from 'mdb-react-ui-kit';
 import ProgrammerCard from './ProgrammerCard';
 import { getCategoryProgrammers } from '../api'; // Ensure this API call is correct
 
-
 function CategoryProgrammers() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -15,7 +14,7 @@ function CategoryProgrammers() {
   useEffect(() => {
     const fetchProgrammers = async () => {
       try {
-        const response = await getCategoryProgrammers(id); // Use the API call from api.js
+        const response = await getCategoryProgrammers(id); // Use the updated API call
         setProgrammers(response.data);
       } catch (error) {
         setError('Error fetching programmers');
