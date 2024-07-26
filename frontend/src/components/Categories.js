@@ -49,11 +49,6 @@ function Categories() {
       try {
         const response = await getCategories();
         console.log('Fetched categories:', response.data); // Inspect the data structure
-
-        if (!Array.isArray(response.data)) {
-          throw new Error('Invalid data format');
-        }
-
         const fetchedCategories = response.data.map(category => {
           const staticCategory = staticCategories.find(staticCat => staticCat.name === category.name);
           return {
@@ -62,11 +57,8 @@ function Categories() {
             icon: staticCategory ? staticCategory.icon : <FaCode />
           };
         });
-
-        console.log('Merged categories:', fetchedCategories); // Inspect merged data
         setCategories(fetchedCategories);
       } catch (error) {
-        console.error('Error fetching or processing categories:', error);
         setError('Error fetching categories');
       } finally {
         setLoading(false);
