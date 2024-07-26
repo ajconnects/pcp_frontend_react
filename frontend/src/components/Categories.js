@@ -15,6 +15,7 @@ function Categories() {
     const fetchCategories = async () => {
       try {
         const response = await getCategories();
+        console.log('Fetched categories:', response.data); // Inspect the data structure
         setCategories(response.data);
       } catch (error) {
         setError('Error fetching categories');
@@ -43,7 +44,7 @@ function Categories() {
               <div className="category-icon">{getCategoryIcon(category.name)}</div>
               <div className="category-info">
                 <h3>{category.name}</h3>
-                <p>{category.buttonText.join(", ")}</p>
+                <p>{category.buttonText ? category.buttonText.join(", ") : 'No technologies listed'}</p>
               </div>
             </div>
           </MDBCol>
